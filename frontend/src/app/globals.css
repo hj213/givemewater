@@ -2,26 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 기본 HTML 및 BODY 스타일 */
+html, body {
+  @apply h-full bg-gray-100;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 웹앱 고정 크기 설정 */
+#app-container {
+  @apply bg-white shadow-lg rounded-lg;
+  width: 100%;
+  max-width: 800px; 
+  min-width: 1024px; 
+  height: 100vh;
+  min-height: 768px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 0px;
+}
+
+/* 모바일 화면에서 앱 중앙에 고정 */
+@media (max-width: 1024px) {
+  #app-container {
+    width: 100vw;
+    min-width: unset;
+    height: 100vh;
+    padding: 10px;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+main {
+  @apply flex-1; /* 남는 공간을 차지할 메인 콘텐츠 */
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+footer {
+  flex-shrink: 0; /* Footer는 고정된 크기를 유지 */
 }

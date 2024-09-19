@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
+import QueryProvider from "@/components/QueryClient";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   title: "Give Me Water!",
   description: "side project by Hj",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,11 +29,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div id="app-container">
-          {/* <header>My Web App</header> */}
-          <main>{children}</main>
-          <footer><Navbar/></footer>
-        </div>
+        <QueryProvider>
+          <div id="app-container">
+            {/* <header>My Web App</header> */}
+            <main>{children}</main>
+            <footer><Navbar/></footer>
+          </div>
+        </QueryProvider>
       </body>
     </html>
   );
